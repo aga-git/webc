@@ -42,6 +42,11 @@
 <!ENTITY options.sbmode "捲軸拖曳模式 (模擬捲動捲軸)">
 <!ENTITY options.samecur "不改變游標 (增加效能)">
 <!ENTITY options.reverse "相反方向捲動">
+<!ENTITY hovering "Hovering the mouse cursor">
+<!ENTITY prefs.hoverinfo "Warning: The &apos;hovering&apos; TextToggle option may degrade browser performance on older computers when browsing complex websites.">
+<!ENTITY options.hovertime "After how much time?">
+<!ENTITY options.hover.min "Immediately">
+<!ENTITY options.hover.max "2 seconds">
 <!ENTITY options.behavior "行為">
 <!ENTITY options.behavior.drag "拖曳行為">
 <!ENTITY options.behavior.scrolling "捲動行為">

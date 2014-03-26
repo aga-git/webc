@@ -72,7 +72,7 @@
 		</content>
 		<implementation>
 			<constructor>
-				<![CDATA[				
+				<![CDATA[
 				var orientation = this.getAttribute('orient') || 'horizontal';
 				var perp = orientation == 'vertical' ? 'horizontal' : 'vertical';
 				var lateral = orientation == 'vertical' ? 'height' : 'width';
@@ -101,19 +101,7 @@
 				slider.setAttribute("increment","1");
 				var pi = (pinc/inc).toFixed(6)*(1.0);
 				slider.setAttribute("pageincrement",String(pi));
-				
-				var observer = new MutationObserver(function(mutations) {
-				  mutations.forEach(function(mutation) {				  		
-				  		var s = mutation.target;
-						var tb = s.parentNode.previousSibling;						
-						var min=parseFloat(s.getAttribute('minval'));
-						var inc=parseFloat(s.getAttribute('inc'));
-						var v = (s.getAttribute('curpos')*inc + min).toFixed(6)*(1.0);
-						tb.value = String(v);					
-				  });   
-				});			  
-				observer.observe(slider, {attributes: true, attributeFilter: ['curpos']});
-				
+				slider.addEventListener('DOMAttrModified',this._sliderChange,false);
 				tb.addEventListener('input',this._tbInput,false);
 				]]>
 			</constructor>
@@ -121,7 +109,8 @@
 			  <getter>
 			    return document.getAnonymousElementByAttribute(this,'anonid','tb').value;
 			  </getter>
-			  <setter>									
+			  <setter>		
+			    'use strict';							
 				var min=parseFloat(this.getAttribute('minval'));
 				var inc=parseFloat(this.getAttribute('inc'));
 				var slider=document.getAnonymousElementByAttribute(this,'anonid','scaleSlider');
@@ -141,6 +130,21 @@
 			  	document.getAnonymousElementByAttribute(this,'anonid','thelabel').disabled = val;
 			  </setter>
 			</property>
+			<method name="_sliderChange">
+				<parameter name="evt"/>
+				<!-- "this" is the slider -->
+				<body>
+					<![CDATA[
+					if (evt.attrName == 'curpos') {
+						var tb = this.parentNode.previousSibling;						
+						var min=parseFloat(this.getAttribute('minval'));
+						var inc=parseFloat(this.getAttribute('inc'));
+						var v = (evt.newValue*inc + min).toFixed(6)*(1.0);
+						tb.value = String(v);
+					}
+					]]>
+				</body>
+			</method>
 			<method name="_tbInput">
 				<parameter name="evt"/>
 				<!-- "this" is the tb -->

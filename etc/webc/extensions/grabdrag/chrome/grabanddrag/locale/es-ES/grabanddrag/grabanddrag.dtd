@@ -42,6 +42,11 @@
 <!ENTITY options.sbmode "Modo barra de desplazamiento (emula el arrastre de la barra de desplazamiento)">
 <!ENTITY options.samecur "Sin cambios (mejora las prestaciones)">
 <!ENTITY options.reverse "Invertir dirección">
+<!ENTITY hovering "Al superponer el puntero del ratón">
+<!ENTITY prefs.hoverinfo "Aviso: La opción de 'Conmutar texto al superponer el ratón' puede hacer la navegación más lenta en páginas complejas si su ordenador es antiguo.">
+<!ENTITY options.hovertime "¿Después de cuánto tiempo?">
+<!ENTITY options.hover.min "Inmediatamente">
+<!ENTITY options.hover.max "2 segundos">
 <!ENTITY options.behavior "Comportamiento">
 <!ENTITY options.behavior.drag "Comportamiento de arrastre">
 <!ENTITY options.behavior.scrolling "Comportamiento de desplazamiento">

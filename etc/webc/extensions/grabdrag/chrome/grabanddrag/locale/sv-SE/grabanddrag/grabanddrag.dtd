@@ -42,6 +42,11 @@
 <!ENTITY options.sbmode "Rullningslistdragningsläge (emulerar dragning av rullningslisten)">
 <!ENTITY options.samecur "Ändra inte (förbättrar prestandan)">
 <!ENTITY options.reverse "Omvänd rullningsriktning">
+<!ENTITY hovering "Hovering the mouse cursor">
+<!ENTITY prefs.hoverinfo "Warning: The &apos;hovering&apos; TextToggle option may degrade browser performance on older computers when browsing complex websites.">
+<!ENTITY options.hovertime "After how much time?">
+<!ENTITY options.hover.min "Immediately">
+<!ENTITY options.hover.max "2 seconds">
 <!ENTITY options.behavior "Beteende">
 <!ENTITY options.behavior.drag "Dragningsbeteende">
 <!ENTITY options.behavior.scrolling "Rullningsbeteende">

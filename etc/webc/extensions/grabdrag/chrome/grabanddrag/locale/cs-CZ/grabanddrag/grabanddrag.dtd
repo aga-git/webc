@@ -42,6 +42,11 @@
 <!ENTITY options.sbmode "Posuvník přetahování (simuluje přetahování posuvníku)">
 <!ENTITY options.samecur "Neměnit (zlepšuje výkon)">
 <!ENTITY options.reverse "Opačný směr tahání">
+<!ENTITY hovering "Hovering the mouse cursor">
+<!ENTITY prefs.hoverinfo "Warning: The &apos;hovering&apos; TextToggle option may degrade browser performance on older computers when browsing complex websites.">
+<!ENTITY options.hovertime "After how much time?">
+<!ENTITY options.hover.min "Immediately">
+<!ENTITY options.hover.max "2 seconds">
 <!ENTITY options.behavior "Chování">
 <!ENTITY options.behavior.drag "Chování přetahování">
 <!ENTITY options.behavior.scrolling "Chování posuvníku">

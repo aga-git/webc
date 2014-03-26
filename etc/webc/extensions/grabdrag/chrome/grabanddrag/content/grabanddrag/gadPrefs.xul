@@ -18,17 +18,19 @@
 	ondialogextra1="savePrefs();"
 	ondialogextra2="return runWizard();"
 	persist="screenX screenY"
-	flex="1" style="max-height: 50em; max-width: 50em;">
+	style="height: 40em; max-width: 50em;">
 
 <script type="application/x-javascript">
 <![CDATA[
+//"use strict";
+
 function init() {
   var checkboxes  = ["on","useCtrl","useAlt","useShift", "sbmode", "samecur", 
   						"reverse", "flickon", "momOn", "flickon-2", "momOn-2", "smoothStop",
   						"qtOffCopy", "qtOn", "strict"]; 
   var menulists = ["togKey", "button", "qtOnCnt", "qtOffCnt", "flickwhole", "flickhoriz"];
   var cmenulists = ["grabCursor","grabbingCursor"];
-  var textboxes = ["mult","dragInc", "flickspeed", "flicktimelimit", "momExtent", "momVariation", "momFriction"];
+  var textboxes = ["mult","dragInc", "flickspeed", "flicktimelimit", "momExtent", "momVariation", "momFriction", "qtOnTime", "qtOffTime"];
   var checkbox, radiogroup, menulist, textbox, i, j;
   var pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
   for (i = 0; i < checkboxes.length; ++i) {
@@ -58,7 +60,11 @@ function init() {
   for (i = 0; i < textboxes.length; ++i) {
     textbox = document.getElementById(textboxes[i]);
     if (textbox.hasAttribute("prefstring")) {
-	    textbox.value = pref.getCharPref(textbox.getAttribute("prefstring"));
+	    if (textboxes[i]=="flickspeed") {
+			textbox.value = 0.05*Math.round(20*Math.log(pref.getCharPref(textbox.getAttribute("prefstring")))/Math.log(10));
+	    } else {
+	    	textbox.value = pref.getCharPref(textbox.getAttribute("prefstring"));
+    	}
     } else {
 	    textbox.value = pref.getCharPref("extensions.grabanddrag." + textbox.getAttribute("id"));
     }
@@ -83,6 +89,8 @@ function updateElements() {
   var elist, i;
   document.getElementById("mult").disabled = document.getElementById("sbmode").checked;
   document.getElementById("grabbingCursor").disabled = document.getElementById("samecur").checked;
+  document.getElementById("qtOnTimeRow").collapsed = (document.getElementById("qtOnCnt").value != -1);
+  document.getElementById("qtOffTimeRow").collapsed = (document.getElementById("qtOffCnt").value != -1);
   
   elist = document.getElementsByAttribute("inflickgroup","true");
   for (i=0; i<elist.length; i++) elist[i].disabled = !document.getElementById("flickon").checked;	
@@ -93,6 +101,7 @@ function updateElements() {
   elist = document.getElementsByAttribute("inqtgroup","true");
   for (i=0; i<elist.length; i++) elist[i].disabled = !document.getElementById("qtOn").checked;	
 
+  window.sizeToContent();
 }
 
 function savePrefs() {
@@ -100,7 +109,7 @@ function savePrefs() {
   						"reverse", "flickon", "momOn", "smoothStop", "qtOffCopy", "qtOn", "strict"];
   var menulists = ["togKey", "button", "qtOnCnt", "qtOffCnt", "flickwhole", "flickhoriz"];
   var cmenulists = ["grabCursor","grabbingCursor"];
-  var textboxes = ["mult","dragInc", "flickspeed", "flicktimelimit", "momExtent", "momVariation", "momFriction"];
+  var textboxes = ["mult","dragInc", "flickspeed", "flicktimelimit", "momExtent", "momVariation", "momFriction", "qtOnTime", "qtOffTime"];
   var checkbox, radiogroup, menulist, textbox, i;
   var pref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
   for (i = 0; i < checkboxes.length; ++i) {
@@ -130,9 +139,13 @@ function savePrefs() {
   for (i = 0; i < textboxes.length; ++i) {
     textbox = document.getElementById(textboxes[i]);
     var f = parseFloat(textbox.value);
-		if (!isNaN(f)) if (f>=0) {
+	if (!isNaN(f)) {
   		if (textbox.hasAttribute("prefstring")) {
+		    if (textboxes[i]=="flickspeed") {
+				pref.setCharPref(textbox.getAttribute("prefstring"), String(Math.pow(10,f)));
+			} else {
 				pref.setCharPref(textbox.getAttribute("prefstring"), String(f));
+			}
 	    } else {
 		  	pref.setCharPref("extensions.grabanddrag." + textbox.getAttribute("id"), String(f));
 	    }
@@ -174,7 +187,7 @@ function gethiddenBL()
 
 ]]>
 </script>
-<hbox align="top">
+<hbox align="top" flex="1">
 <tabbox flex="1">
 	<tabs id="grabOptionTabs" orient="horizontal">
 		<tab label="&options.tab.general;" />
@@ -310,16 +323,33 @@ function gethiddenBL()
 						<row align="center">
 							<menulist id="qtOnCnt" inqtgroup="true">
 								<menupopup>
+									<menuitem label="&hovering;" value="-1"/>
 									<menuitem label="&autoh;" value="0"/>
 									<menuitem label="&oneclick;" value="1"/>
 									<menuitem label="&twoclick;" value="2"/>
 								</menupopup>
 							</menulist>
 							<label value="&qt.enable1;" inqtgroup="true"/>							
-						</row>      			
+						</row>
+						<row align="start" id="qtOnTimeRow">
+							<hbox>
+								<spacer flex="1"/> 
+								<label value="&options.hovertime;"/>
+							</hbox>
+							<prefscale id="qtOnTime"
+											orient="horizontal" flex="1" showTB="false"
+											boxwidth="30"
+											minval="10"
+											maxval="2000"
+											minlab="&options.hover.min;"
+											maxlab="&options.hover.max;"
+											inc="10"
+											pageinc="250"/>
+						</row>
 						<row align="center">
 							<menulist id="qtOffCnt" inqtgroup="true">
 								<menupopup>
+									<menuitem label="&hovering;" value="-1"/>
 									<menuitem label="&auto;" value="0"/>
 									<menuitem label="&oneclick;" value="1"/>
 									<menuitem label="&twoclick;" value="2"/>
@@ -327,9 +357,25 @@ function gethiddenBL()
 							</menulist>
 							<label value="&qt.disable1;" inqtgroup="true"/>
 						</row>
+						<row align="start" id="qtOffTimeRow">
+							<hbox>
+								<spacer flex="1"/> 
+								<label value="&options.hovertime;"/>
+							</hbox>
+							<prefscale id="qtOffTime"
+											orient="horizontal" flex="1" showTB="false"
+											boxwidth="30"
+											minval="10"
+											maxval="2000"
+											minlab="&options.hover.min;"
+											maxlab="&options.hover.max;"
+											inc="10"
+											pageinc="250"/>
+						</row>
 					</rows>
 				</grid>
 				<checkbox id="qtOffCopy" type="checkbox" label="&qt.qtOffCopy;" inqtgroup="true"/>
+				<description class="inner">&prefs.hoverinfo;</description>
 			</groupbox>
 			<button label="&prefs.blbutton;" oncommand='getGAD().openBlacklist("blacklist","");'/>
 		</tabpanel>
@@ -339,7 +385,6 @@ function gethiddenBL()
 				<caption label="&options.mult;"/>
 				<grid flex="1">
 					<columns>
-						<!--<column flex=""/>-->
 						<column flex="1"/>
 					</columns>
 					<rows>                                    					   
@@ -401,7 +446,7 @@ function gethiddenBL()
 							</menulist>
 						</row>	
 						<row>
-							<spacer/>             		       			
+							<spacer/>
 							<checkbox id="samecur" type="checkbox" label="&options.samecur;"/>
 						</row>      			
 					</rows>
@@ -419,7 +464,6 @@ function gethiddenBL()
 										oncommand='document.getElementById("momOn-2").checked = this.checked'/>
 					<grid flex="1">
 						<columns>
-							<!--<column flex=""/>-->
 							<column flex="1"/>
 						</columns>
 						<rows>
@@ -495,7 +539,6 @@ function gethiddenBL()
 				</hbox>
 				<grid flex="1">
 					<columns>
-						<!--<column flex=""/>-->
 						<column flex="1"/>
 					</columns>
 					<rows>	        			
@@ -504,8 +547,8 @@ function gethiddenBL()
 											orient="horizontal" flex="1" showTB="false"
 											label="&options.flickspeed;"
 											boxwidth="40"
-											minval="0.05"
-											maxval="5"
+											minval="-3.3"
+											maxval="1.3"
 											minlab="&options.flickspeed.min;"
 											maxlab="&options.flickspeed.max;"
 											inc="0.05"
@@ -555,7 +598,7 @@ function gethiddenBL()
 			</groupbox>			
 			<groupbox orient="vertical">
 				<caption label="&options.misc;"/>    
-				<checkbox id="smoothStop"	type="checkbox" label="&options.smoothStop;"/>
+				<checkbox id="smoothStop" type="checkbox" label="&options.smoothStop;"/>
 				<checkbox id="strict" type="checkbox" label="&options.strict;"/>
 			</groupbox>
 			<groupbox orient="vertical">

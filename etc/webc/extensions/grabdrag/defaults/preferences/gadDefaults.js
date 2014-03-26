@@ -1,4 +1,4 @@
-pref("extensions.grabanddrag-version", "0.0.0");
+//AGA pref("extensions.grabanddrag-version", "0.0.0");
 pref("extensions.grabanddrag.on", true);
 pref("extensions.grabanddrag.grabCursor", "url(chrome://grabanddrag/skin/grab.png) 10 4, move");
 pref("extensions.grabanddrag.grabbingCursor", "url(chrome://grabanddrag/skin/grabbing.png) 10 4, move");
@@ -22,9 +22,11 @@ pref("extensions.grabanddrag.momFriction", "0");
 pref("extensions.grabanddrag.smoothStop", true);
 pref("extensions.grabanddrag.button", 0);
 pref("extensions.grabanddrag.qtOn", true);
-pref("extensions.grabanddrag.qtOnCnt", 2);
-pref("extensions.grabanddrag.qtOffCnt", 1);
-pref("extensions.grabanddrag.qtOffCopy", false);
+//AGA pref("extensions.grabanddrag.qtOnCnt", 2);
+//AGA pref("extensions.grabanddrag.qtOnTime", "400");
+//AGA pref("extensions.grabanddrag.qtOffCnt", 1);
+//AGA pref("extensions.grabanddrag.qtOffTime", "150");
+//AGA pref("extensions.grabanddrag.qtOffCopy", false);
 pref("extensions.grabanddrag.strict", false);
 pref("extensions.grabanddrag.toolsMenuEntry", true);
 pref("extensions.grabanddrag.shortdT",50);
@@ -32,9 +34,18 @@ pref("extensions.grabanddrag.shortdX",2);
 pref("extensions.grabanddrag.flickhoriz", 0);
 pref("extensions.grabanddrag.blacklist","[]");
 pref("extensions.grabanddrag.specialBL","embed|object|applet");
-pref("extensions.grabanddrag.hiddenBL0",'[{"id":"gcalendar","on":"true","url":"google.com/calendar","elem":"*"},{"id":"gdocs","on":"true","url":"docs.google.com","elem":"*"},{"id":"links","on":"true","url":"*","elem":"*:link,*:visited,*[role=\\"link\\"]"},{"id":"maps","on":"true","url":"*","elem":"div[id*=\\"map\\"],div[class*=\\"map\\"],div[id*=\\"Map\\"],div[class*=\\"Map\\"]"},{"id":"textfields","on":"true","url":"*","elem":"input:not([type=\\"button\\"]):not([type=\\"checkbox\\"]):not([type=\\"image\\"]):not([type=\\"radio\\"]):not([type=\\"reset\\"]):not([type=\\"submit\\"]),textarea,*[role=\\"textbox\\"]"},{"id":"menus","on":"true","url":"*","elem":"select,*[role*=\\"menu\\"],*[role=\\"option\\"],div[class*=\\"goog\\"][class*=\\"menu\\"],*[role=\\"listbox\\"]"},{"id":"buttons","on":"true","url":"*","elem":"button,input[type=\\"button\\"],input[type=\\"file\\"],input[type=\\"image\\"],input[type=\\"reset\\"],input[type=\\"submit\\"],*[role*=\\"button\\"],div[class*=\\"goog\\"][class*=\\"button\\"]"},{"id":"mediacontrols","on":"true","url":"*","elem":"video,div.ovp-controls,div.sv-controls,div.jp-interface,div.mejs-controls,div.ui-video-control,div.media-controls,div.vjs-controls,div.oipcontrols,div.hvideo,div.h5_lb_controls"},{"id":"disablegad","on":"true","url":"*","elem":"*[disableGrabAndDrag=\\"true\\"]"},{"id":"editable","on":"true","url":"*","elem":"*[contenteditable=\\"true\\"]"},{"id":"sliders","on":"true","url":"*","elem":"*[role=\\"slider\\"],*[role=\\"scrollbar\\"],*[class*=\\"slider\\"],*.scroll,*.jspDrag"},{"id":"draggables","on":"true","url":"*","elem":"*[class*=\\"draggable\\"],*[class*=\\"handle\\"],*.x-unselectable,:not(table)[class*=\\"sortable\\"]"},{"id":"canvas","on":"true","url":"*","elem":"canvas"},{"id":"addons","on":"true","url":"*","elem":"#pxa-area-protector"},{"id":"checkboxes","on":"false","url":"*","elem":"input[type=\\"checkbox\\"],*[role=\\"checkbox\\"]"},{"id":"radiobuttons","on":"false","url":"*","elem":"input[type=\\"radio\\"],*[role*=\\"radio\\"]"}]');
+pref("extensions.grabanddrag.hiddenBL0",'[{"id":"gcalendar","on":"true","url":"google.com/calendar","elem":"*"},{"id":"gdocs","on":"true","url":"docs.google.com","elem":"*"},{"id":"links","on":"true","url":"*","elem":"*:link,*:visited,*[role=\\"link\\"]"},{"id":"maps","on":"true","url":"*","elem":"div[id*=\\"map\\"],div[class*=\\"map\\"],div[id*=\\"Map\\"],div[class*=\\"Map\\"]"},{"id":"textfields","on":"true","url":"*","elem":"input:not([type=\\"button\\"]):not([type=\\"checkbox\\"]):not([type=\\"image\\"]):not([type=\\"radio\\"]):not([type=\\"reset\\"]):not([type=\\"submit\\"]),textarea,*[role=\\"textbox\\"]"},{"id":"menus","on":"true","url":"*","elem":"select,*[role*=\\"menu\\"],*[role=\\"option\\"],div[class*=\\"goog\\"][class*=\\"menu\\"],*[role=\\"listbox\\"]"},{"id":"buttons","on":"true","url":"*","elem":"button,input[type=\\"button\\"],input[type=\\"file\\"],input[type=\\"image\\"],input[type=\\"reset\\"],input[type=\\"submit\\"],*[role*=\\"button\\"],div[class*=\\"goog\\"][class*=\\"button\\"]"},{"id":"mediacontrols","on":"true","url":"*","elem":"video,div.ovp-controls,div.sv-controls,div.jp-interface,div.mejs-controls,div.ui-video-control,div.media-controls,div.vjs-controls,div.oipcontrols,div.hvideo,div.h5_lb_controls"},{"id":"disablegad","on":"true","url":"*","elem":"*[disableGrabAndDrag=\\"true\\"]"},{"id":"editable","on":"true","url":"*","elem":"*[contenteditable=\\"true\\"]"},{"id":"sliders","on":"true","url":"*","elem":"*[role=\\"slider\\"],*[role=\\"scrollbar\\"],*[class*=\\"slider\\"],*.scroll,*.jspDrag"},{"id":"draggables","on":"true","url":"*","elem":"*[draggable=\\"true\\"],*[class*=\\"draggable\\"],*[class*=\\"handle \\"],*[class$=\\"handle\\"],*.x-unselectable,:not(table)[class*=\\"sortable\\"]"},{"id":"canvas","on":"true","url":"*","elem":"canvas"},{"id":"addons","on":"true","url":"*","elem":"#pxa-area-protector"},{"id":"checkboxes","on":"false","url":"*","elem":"input[type=\\"checkbox\\"],*[role=\\"checkbox\\"]"},{"id":"radiobuttons","on":"false","url":"*","elem":"input[type=\\"radio\\"],*[role*=\\"radio\\"]"}]');
 pref("extensions.grabanddrag.hiddenBL1",'[{"id":"disablegad","on":"true","url":"*","elem":"*[disableGrabAndDrag=\\"true\\"]"},{"id":"links","on":"false","url":"*","elem":"*:link,*:visited,*[role=\\"link\\"]"}]');
 pref("extensions.grabanddrag.hiddenBL2",'[{"id":"disablegad","on":"true","url":"*","elem":"*[disableGrabAndDrag=\\"true\\"]"},{"id":"links","on":"false","url":"*","elem":"*:link,*:visited,*[role=\\"link\\"]"}]');
 pref("extensions.grabanddrag.textdoesntcount",'[{"on":"true","url":"*","elem":"*:link,*:visited,*[role=\\"link\\"]"}]');
 pref("extensions.grabanddrag.countsastext",'[{"on":"true","url":"*","elem":"input:not([type=\\"button\\"]):not([type=\\"checkbox\\"]):not([type=\\"image\\"]):not([type=\\"radio\\"]):not([type=\\"reset\\"]):not([type=\\"submit\\"]),textarea,*[role=\\"textbox\\"]"}]');
 pref("extensions.{477c4c36-24eb-11da-94d4-00e08161165f}.description", "chrome://grabanddrag/locale/grabanddrag.properties");
+
+//AGA Begin 
+pref("extensions.grabanddrag-version", "3.2.0");
+pref("extensions.grabanddrag.qtOnCnt", -1);
+pref("extensions.grabanddrag.qtOnTime", "10");
+pref("extensions.grabanddrag.qtOffCnt", -1);
+pref("extensions.grabanddrag.qtOffTime", "10");
+pref("extensions.grabanddrag.qtOffCopy", true);
+//AGA End

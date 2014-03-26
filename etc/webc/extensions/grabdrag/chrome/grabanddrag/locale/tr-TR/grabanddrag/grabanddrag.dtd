@@ -42,6 +42,11 @@
 <!ENTITY options.sbmode "Scrollbar Drag Mode (emulate dragging the scrollbar)">
 <!ENTITY options.samecur "Don&apos;t change (improves performance)">
 <!ENTITY options.reverse "Reverse Scroll Direction">
+<!ENTITY hovering "Hovering the mouse cursor">
+<!ENTITY prefs.hoverinfo "Warning: The &apos;hovering&apos; TextToggle option may degrade browser performance on older computers when browsing complex websites.">
+<!ENTITY options.hovertime "After how much time?">
+<!ENTITY options.hover.min "Immediately">
+<!ENTITY options.hover.max "2 seconds">
 <!ENTITY options.behavior "Behavior">
 <!ENTITY options.behavior.drag "Drag Behavior">
 <!ENTITY options.behavior.scrolling "Scroll Behavior">

@@ -42,6 +42,11 @@
 <!ENTITY options.sbmode "Emula il trascinamento come per la barra di scorrimento">
 <!ENTITY options.samecur "Non modificare">
 <!ENTITY options.reverse "Inverti la direzione">
+<!ENTITY hovering "Tramite passaggio del cursore del mouse">
+<!ENTITY prefs.hoverinfo "Attenzione:  questa opzione può ridurre le prestazioni del browser su computer datati durante la navigazione in siti web complessi">
+<!ENTITY options.hovertime "Attiva l'opzione:">
+<!ENTITY options.hover.min "immediatamente">
+<!ENTITY options.hover.max "dopo due secondi">
 <!ENTITY options.behavior "Comportamento">
 <!ENTITY options.behavior.drag "Comportamento di trascinamento">
 <!ENTITY options.behavior.scrolling "Comportamento di scorrimento">

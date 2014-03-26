@@ -10,7 +10,8 @@ content	grabanddrag	chrome/grabanddrag/content/grabanddrag/ contentaccessible=ye
 
 skin	grabanddrag	classic/1.0	chrome/grabanddrag/skin/classic/grabanddrag/
 skin	gadscale	classic/1.0	chrome/grabanddrag/skin/classic/prefscale-3.0/
-style	chrome://grabanddrag/content/gadPrefs.xul	chrome://grabanddrag/skin/gadPrefs.css
+style	chrome://grabanddrag/content/gadPrefs.xul	chrome://grabanddrag/skin/gadPrefs_old.css appversion<14
+style	chrome://grabanddrag/content/gadPrefs.xul	chrome://grabanddrag/skin/gadPrefs.css appversion>=14
 style	chrome://grabanddrag/content/gadBL.xul	chrome://grabanddrag/skin/gadPrefs.css
 style	chrome://browser/content/browser.xul	chrome://grabanddrag/skin/grabAndDrag-unix.css
 style	chrome://browser/content/browser.xul	chrome://grabanddrag/skin/grabAndDrag-win.css	os=WINNT

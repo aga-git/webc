@@ -42,6 +42,11 @@
 <!ENTITY options.sbmode "Mode de glissement de la barre de défilement">
 <!ENTITY options.samecur "Ne pas modifier">
 <!ENTITY options.reverse "Inverser le sens">
+<!ENTITY hovering "Survol du curseur de la souris">
+<!ENTITY prefs.hoverinfo "Attention : l'option textToggle au survol peut diminuer les performances du navigateur sur les ordinateurs anciens, en parcourant des sites web complexes.">
+<!ENTITY options.hovertime "Après quel délai ?">
+<!ENTITY options.hover.min "Sans délai">
+<!ENTITY options.hover.max "2 secondes">
 <!ENTITY options.behavior "Comportement du glissement">
 <!ENTITY options.behavior.drag "Coportement du glissement">
 <!ENTITY options.behavior.scrolling "Mode de défilement">

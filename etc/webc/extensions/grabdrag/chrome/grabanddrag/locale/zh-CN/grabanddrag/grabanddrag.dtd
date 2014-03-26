@@ -42,6 +42,11 @@
 <!ENTITY options.sbmode "滚动条拖拽模式（模仿拖拽滚动条）">
 <!ENTITY options.samecur "不变（更好的性能）">
 <!ENTITY options.reverse "相反方向">
+<!ENTITY hovering "鼠标指针悬停">
+<!ENTITY prefs.hoverinfo "警告：“悬停时文本切换”选项在较旧的电脑浏览复杂的网站时可能致使浏览器的性能迟缓。">
+<!ENTITY options.hovertime "在多长时间后？">
+<!ENTITY options.hover.min "立即">
+<!ENTITY options.hover.max "2秒后">
 <!ENTITY options.behavior "行为">
 <!ENTITY options.behavior.drag "拖拽行为">
 <!ENTITY options.behavior.scrolling "滚动行为">

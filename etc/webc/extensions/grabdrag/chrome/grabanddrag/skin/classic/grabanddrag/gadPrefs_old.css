@@ -5,7 +5,7 @@ description.inner {
 	color: graytext;
 }
 prefscale {
-	-moz-binding: url('chrome://grabanddrag/content/gadScale.xml#prefscale');
+	-moz-binding: url('chrome://grabanddrag/content/gadScale_old.xml#prefscale');
 	min-width: 200px;
 }
 

@@ -22,7 +22,8 @@
 
 <script type="application/x-javascript">
 <![CDATA[
-  
+//"use strict";  
+
 function init() 
 {	
   var row; var cell; var item; var i, j;
@@ -77,20 +78,23 @@ function go()
 {
   var gadPref = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.grabanddrag.");
   var bllist = document.getElementById("blchildren").children;
-  var bl=[]; var f;
+  var bl=[]; var f, _url, _elem;
   for (var i=0;i<bllist.length;i++) {
-    if (bllist[i].children[0].children[0].getAttribute('label')!="") { 
-	    f = { on : (bllist[i].children[0].getAttribute('properties')=='on')?"true":"false",
-	    		url : bllist[i].children[0].children[0].getAttribute('label'),
-    			elem : bllist[i].children[0].children[1].getAttribute('label')
-    	};
-    	if (bllist[i].children[0].hasAttribute('filterid')) {
-	    	f.id = bllist[i].children[0].getAttribute('filterid');
-    	} else {
-	    	f.com = bllist[i].children[0].children[2].getAttribute('label');	
-    	}
-    	bl.push(f);
-	}
+    _url = bllist[i].children[0].children[0].getAttribute('label');
+    _elem = bllist[i].children[0].children[1].getAttribute('label');
+    if (_url.trim()=="") _url="*";
+    if (_elem.trim()=="") _elem="*";
+    if (_url.trim()=="*" && _elem.trim()=="*") continue;
+	f = { on: (bllist[i].children[0].getAttribute('properties')=='on')?"true":"false", 
+	      url: _url, 
+	      elem: _elem
+	};
+    if (bllist[i].children[0].hasAttribute('filterid')) {
+	   	f.id = bllist[i].children[0].getAttribute('filterid');
+    } else {
+	   	f.com = bllist[i].children[0].children[2].getAttribute('label');	
+    }
+    bl.push(f);	
   }
   
   gadPref.setCharPref(window.arguments[0],JSON.stringify(bl));

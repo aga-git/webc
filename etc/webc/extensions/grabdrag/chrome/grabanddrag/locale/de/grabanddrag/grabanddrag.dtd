@@ -42,6 +42,11 @@
 <!ENTITY options.sbmode "Emuliere Ziehen der Bildlaufleisten">
 <!ENTITY options.samecur "Nicht wechseln (schneller)">
 <!ENTITY options.reverse "Richtung umkehren">
+<!ENTITY hovering "Hovering the mouse cursor">
+<!ENTITY prefs.hoverinfo "Warning: The &apos;hovering&apos; TextToggle option may degrade browser performance on older computers when browsing complex websites.">
+<!ENTITY options.hovertime "After how much time?">
+<!ENTITY options.hover.min "Immediately">
+<!ENTITY options.hover.max "2 seconds">
 <!ENTITY options.behavior "Verhalten">
 <!ENTITY options.behavior.drag "Zieh-Verhalten">
 <!ENTITY options.behavior.scrolling "Bildlauf">

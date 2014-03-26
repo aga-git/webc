@@ -5,7 +5,7 @@
 <!ENTITY grabanddrag.shortlabel "Grab/Drag">
 <!ENTITY options.title "Grab and Drag 設定">
 <!ENTITY options.apply "適用">
-<!ENTITY options.wizard "スタートアップ・ウィザードの開始">
+<!ENTITY options.wizard "スタートアップウィザードの開始">
 <!ENTITY options.reset "すべての設定を、初期設定に戻します">
 <!ENTITY options.tab.general "一般">
 <!ENTITY options.tab.behavior "追加オプション">
@@ -42,6 +42,11 @@
 <!ENTITY options.sbmode "スクロールバー ドラッグ方式 (スクロールバーを移動させる状態をまねる)">
 <!ENTITY options.samecur "同じカーソルを使う (パフォーマンスが向上します)">
 <!ENTITY options.reverse "スクロール方向を反転">
+<!ENTITY hovering "マウスカーソルをホバーリング">
+<!ENTITY prefs.hoverinfo "警告: &apos;ホバーリング&apos; を有効にした場合、複雑なウェブサイトを閲覧する際に古いコンピュータ上でブラウザのパフォーマンスが低下することがあります。">
+<!ENTITY options.hovertime "どのくらいの時間が経過した後？">
+<!ENTITY options.hover.min "すぐに">
+<!ENTITY options.hover.max "2秒">
 <!ENTITY options.behavior "振る舞い">
 <!ENTITY options.behavior.drag "ドラッグ動作の振る舞い">
 <!ENTITY options.behavior.scrolling "スクロール動作の振る舞い">
@@ -108,7 +113,7 @@
 <!ENTITY blacklist.add "新しいルールの追加">
 <!ENTITY blacklist.toggle "有効/無効">
 <!ENTITY blacklist.remove "ルールを削除">
-<!ENTITY wiz.title "Grab and Drag スタートアップ ウィザード">
+<!ENTITY wiz.title "Grab and Drag スタートアップウィザード">
 <!ENTITY wiz.go "終了">
 <!ENTITY wiz.config "Grab and Drag を使用する環境は...">
 <!ENTITY wiz.3button "3 ボタンのマウス (中ボタンを使用する)">
@@ -117,6 +122,6 @@
 <!ENTITY wiz.pen "ペンを使用するコンピューター (左ボタン + ジェスチャー)">
 <!ENTITY wiz.addTB "Grab and Drag を切り替えるボタンを、ナビゲーションツールバーに追加する">
 <!ENTITY wiz.openprefs "このウィザードが終了した後に、メインの設定ダイアログを開きます">
-<!ENTITY wiz.notes "ようこそ、Grab and Drag のスタートアップ ウィザードへ。ここでは、あなたのコンピューターに対応させるために、この拡張機能の簡単な構成をすることができます。メインの設定ダイアログには、この拡張機能の振る舞いと外観を変更するための多数の追加オプションが存在します。">
+<!ENTITY wiz.notes "ようこそ、Grab and Drag のスタートアップウィザードへ。ここでは、あなたのコンピューターに対応させるために、この拡張機能の簡単な構成をすることができます。メインの設定ダイアログには、この拡張機能の振る舞いと外観を変更するための多数の追加オプションが存在します。">
 <!ENTITY wiz.please "注意:">
-<!ENTITY wiz.notes2 "Grab and Drag の新規ユーザーが持つ最も一般的な質問は、テキストを選択するためにドラッグ機能を無効にする方法です。これは、以下の3つの方法があります。つまり、「切り替えホットキー」、「ツールバーの切り替えボタン」、そして「&apos;テキスト切り替え&apos; 機能」です。この機能は、テキスト領域をクリックするだけで切り替えることができます。詳しい情報とオプションを構成するために、メインの設定ダイアログをご覧ください。">
+<!ENTITY wiz.notes2 "Grab and Drag の新規ユーザーが持つ最も一般的な質問は、テキストを選択するためにドラッグ機能を無効にする方法です。これは、以下の3つの方法があります。つまり、「切り替えホットキー」、「ツールバーの切り替えボタン」、そして「&apos;テキスト切り替え&apos; 機能」です。この機能は、テキスト領域をクリックするだけで切り替えることができます。詳しい情報とオプションを構成するためにメインの設定ダイアログをご覧ください。">
