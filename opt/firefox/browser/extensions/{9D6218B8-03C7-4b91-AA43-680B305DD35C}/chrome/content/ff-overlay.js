@@ -20,8 +20,10 @@ procon.onFirefoxLoad = function(event)
         var date = new Date();
         var time = date.getTime() / 1000;
         var lastUpdateTime = Prefs.getIntPref("subscriptions.lastUpdateTime");
-
-        if (((time - lastUpdateTime) / 3600) > 72)
+// AGA Begin
+//        if (((time - lastUpdateTime) / 3600) > 72) 
+        if (((time - lastUpdateTime) / 60) > Prefs.getIntPref("subscriptions.updateTime"))
+// AGA End
         {
             (new (Cu.import("resource://procon/subscriptions.jsm", null).subscriptions)).update();
             Cu.import("resource://procon/filter.jsm", null).publicObj.updatePrefs();
