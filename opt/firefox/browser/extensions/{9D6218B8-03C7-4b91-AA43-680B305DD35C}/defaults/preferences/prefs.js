@@ -30,8 +30,8 @@ pref("extensions.{9D6218B8-03C7-4b91-AA43-680B305DD35C}.description", "chrome://
 
 /*AGA*/
 pref("extensions.procon.blacklist.words.enabled", false);
-pref("extensions.procon.blacklist.sites", "");
-pref("extensions.procon.blacklist.words", "");
+pref("extensions.procon.blacklist.sites", "sex.ru");
+pref("extensions.procon.blacklist.words", "xxxxxxxxxx##########$$$$$$$$$$&&&&&&&&&&@@@@@@@@@@");
 pref("extensions.procon.blacklist.advanced.examineMeta", false);
 pref("extensions.procon.blacklist.advanced.limitNetAccess", true);
 pref("extensions.procon.blacklist.advanced.redirect", true);
