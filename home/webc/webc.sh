@@ -36,7 +36,9 @@ fi
 AGA_screenW=$(xrandr | grep '*+'| sed "s~\s*\([0-9]*\)x\([0-9]*\).*~\1~")
 AGA_screenH=$(xrandr | grep '*+'| sed "s~\s*\([0-9]*\)x\([0-9]*\).*~\2~")
 neon=${AGA_screenW}x${AGA_screenH}
-test -e /home/webc/bg-orig${neon}.png || test $(($AGA_screenW*100/$AGA_screenH)) -gt 155 && neon="1920x1080" || neon="1280x1024"
+if !(test -e /home/webc/bg-orig${neon}.png); then
+  test $(($AGA_screenW*100/$AGA_screenH)) -gt 155 && neon="1920x1080" || neon="1280x1024"
+fi
 update_background() { xloadimage -border rgb:00/80/C3 -quiet -onroot -fullscreen "$1"; }
 xsetroot -solid rgb:00/80/C3
 #AGA End
