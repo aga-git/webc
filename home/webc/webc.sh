@@ -33,8 +33,26 @@ if (xrandr | grep -qs "LVDS")&&(xrandr | grep -qs "VGA") ; then
   test "$AGA_VGA" != "" && xrandr --output ${AGA_VGA} --auto
 fi
 
+AGA_bb="unknown"
+AGA_screenW_old="unknown"
+AGA_screenH_old="unknown"
+
+if test -e $AGA_bb_file; then
+  . "$AGA_bb_file"
+  AGA_screenW_old=$AGA_screenW
+  AGA_screenH_old=$AGA_screenH
+fi
 AGA_screenW=$(xrandr | grep '*+'| sed "s~\s*\([0-9]*\)x\([0-9]*\).*~\1~")
 AGA_screenH=$(xrandr | grep '*+'| sed "s~\s*\([0-9]*\)x\([0-9]*\).*~\2~")
+
+echo AGA_screenW=\""$AGA_screenW"\" >  ${AGA_bb_file}
+echo AGA_screenH=\""$AGA_screenH"\" >> ${AGA_bb_file}
+AGA_clean=false
+test "$AGA_screenW" = "$AGA_screenW_old" || AGA_clean=true
+test "$AGA_screenH" = "$AGA_screenH_old" || AGA_clean=true
+echo AGA_clean="$AGA_clean" >> ${AGA_bb_file}
+test "$AGA_bb" = "unknown" || echo AGA_bb=\""$AGA_bb"\" >> ${AGA_bb_file}
+
 neon=${AGA_screenW}x${AGA_screenH}
 if !(test -e /home/webc/bg-orig${neon}.png); then
   test $(($AGA_screenW*100/$AGA_screenH)) -gt 155 && neon="1920x1080" || neon="1280x1024"
@@ -84,6 +102,9 @@ xset +dpms
 sudo chmod 666 "$prefs"
 echo "pref(\"codetch.user_rss_urls\",\"${AGA_rss_url}/?screenW=${AGA_screenW}&screenH=${AGA_screenH}\");" >> "$prefs"
 sudo chmod 644 "$prefs"
+if test -e $AGA_bb_file; then
+  . "$AGA_bb_file"
+fi
 # AGA end
 
 
@@ -221,8 +242,10 @@ do
 	then
 
 		xsetroot -name "$webc_version $webc_id"
-
-		if ! cmdline_has noclean
+# AGA begin
+#		if ! cmdline_has noclean
+		if (! cmdline_has noclean)||$AGA_clean
+# AGA end
 		then
 		for d in /home/webc/{.mozilla,.adobe,.macromedia,Downloads} /tmp/webc
 		do

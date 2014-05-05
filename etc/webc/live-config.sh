@@ -98,6 +98,12 @@ then
 	sed -i 's,// installButton,installButton,g' /etc/webc/extensions/webcnoaddressbar/content/wc.js /etc/webc/extensions/webconverger/content/wc.js
 fi
 
+#AGA begin
+AGA_bigbuttons="unknown"
+AGA_bb="unknown"
+AGA_clean=false
+#AGA end
+
 for x in $( cmdline ); do
 	case $x in
 
@@ -115,12 +121,8 @@ for x in $( cmdline ); do
 		;;
 
 #AGA begin
-	bigbuttons)
-		ln -s /etc/webc/extensions/BigButtons '/opt/firefox/browser/extensions/BigButtons@kensaunders'
-		ln -s /etc/webc/extensions/ThemeFontsAndSize '/opt/firefox/browser/extensions/{f69e22c7-bc50-414a-9269-0f5c344cd94c}'
-		ln -s /etc/webc/extensions/zoompage '/opt/firefox/browser/extensions/zoompage@DW-dev'
-		test -e "/opt/firefox/browser/extensions/vkeyboard@stlouis-shopper.com" && rm -f "/opt/firefox/browser/extensions/vkeyboard@stlouis-shopper.com"
-		ln -s /etc/webc/extensions/vkeyboardB '/opt/firefox/browser/extensions/vkeyboard@stlouis-shopper.com'
+	bigbuttons=*)
+		AGA_bigbuttons=${x#bigbuttons=}
 		;;
 #AGA end
 	support)
@@ -238,6 +240,34 @@ EOC
 		;;
 	esac
 done
+
+#AGA begin
+if test -e $AGA_bb_file; then
+  . "$AGA_bb_file"
+fi
+echo AGA_screenW=\""$AGA_screenW"\" >  ${AGA_bb_file}
+echo AGA_screenH=\""$AGA_screenH"\" >> ${AGA_bb_file}
+if test "$AGA_bigbuttons" = "unknown"; then
+  test "$AGA_screenW" -gt 1280 && AGA_bigbuttons="on" || AGA_bigbuttons="off"
+fi
+case $AGA_bigbuttons in
+  on)
+    ln -s /etc/webc/extensions/BigButtons '/opt/firefox/browser/extensions/BigButtons@kensaunders'
+    ln -s /etc/webc/extensions/ThemeFontsAndSize '/opt/firefox/browser/extensions/{f69e22c7-bc50-414a-9269-0f5c344cd94c}'
+    ln -s /etc/webc/extensions/zoompage '/opt/firefox/browser/extensions/zoompage@DW-dev'
+    test -e "/opt/firefox/browser/extensions/vkeyboard@stlouis-shopper.com" && rm -f "/opt/firefox/browser/extensions/vkeyboard@stlouis-shopper.com"
+    ln -s /etc/webc/extensions/vkeyboardB '/opt/firefox/browser/extensions/vkeyboard@stlouis-shopper.com'
+  ;;
+  off)
+    
+  ;;
+esac
+if ! $AGA_clean; then
+  test "$AGA_bb" = "$AGA_bigbuttons" ||  AGA_clean=true
+fi
+echo AGA_clean="$AGA_clean" >> ${AGA_bb_file}
+echo AGA_bb=\""$AGA_bigbuttons"\" >> ${AGA_bb_file}
+#AGA end
 
 # Make sure /home has noexec and nodev, for extra security.
 # First, just try to remount, in case /home is already a separate filesystem
