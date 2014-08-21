@@ -66,7 +66,7 @@ fi
 
 while (true); do
   for ((AGA_net=20; AGA_net<=29; AGA_net++)) do 
-    for ((AGA_shop_id=1; AGA_shop_id<=254; AGA_shop_id++)) do
+    for ((AGA_shop_id=0; AGA_shop_id<=255; AGA_shop_id++)) do
       if (arp-scan -q -arpspa=172.$AGA_net.$AGA_shop_id.30 172.$AGA_net.$AGA_shop_id.1 | grep -qs "172.$AGA_net.$AGA_shop_id.1") then
         echo AGA_net=\""$AGA_net"\" > ${AGA_cfg_file}
         echo AGA_shop_id=\""$AGA_shop_id"\" >> ${AGA_cfg_file}
