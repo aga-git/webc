@@ -138,7 +138,18 @@ install_root() {
 
 # Trap any shell exits with the failed handler
 trap failed_install EXIT
-
+#AGA begin
+clear_screen
+AGA_mode=$(dialog --nocancel --menu "Select Kiosk or Showcase" 17 60 10 kiosk "Kiosk mode" showcase "Showcase mode" 2>&1 1>&4)
+if [ -n "${AGA_mode}" ]; then
+  /sbin/shutdown
+fi
+clear_screen
+AGA_ID=$(dialog --nocancel --menu "Select ID" 17 60 10 1 "1" 2 "2" 3 "3" 4 "4" 5 "5" 6 "6" 7 "7" 8 "8" 9 "9" 10 "10" 2>&1 1>&4)
+if [ -n "${AGA_ID}" ]; then
+  /sbin/shutdown
+fi
+#AGA end
 clear_screen
 disk=$( find_disk )
 partition_disk $disk
@@ -167,6 +178,12 @@ _logs "mounting $home_partition on /mnt/home"
 test -d /mnt/home || mkdir /mnt/home
 mount $home_partition /mnt/home
 echo "/home" > /mnt/home/live-persistence.conf
+_logs "mkdir /mnt/home/home/webc"
+mkdir -p /mnt/home/home
+_logs "cp -avr /home/webc /mnt/home/home/webc"
+cp -avr /home/webc /mnt/home/home
+echo AGA_mode=\""$AGA_mode"\" > /mnt/home/home/webc/aga-mod.conf
+echo AGA_ID=\""$AGA_ID"\" >> /mnt/home/home/webc/aga-mod.conf
 #AGA end
 
 _logs "unmounting partitions"

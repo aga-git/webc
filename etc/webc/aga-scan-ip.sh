@@ -1,6 +1,7 @@
 #!/bin/bash
 
 AGA_cfg_file="/home/webc/aga.conf"
+AGA_mod_file="/home/webc/aga-mod.conf"
 AGA_int_file="/etc/network/interfaces"
 AGA_int_ori_file="/etc/network/interfaces.ori"
 AGA_resolv_file="/etc/resolv.conf"
@@ -10,6 +11,7 @@ AGA_net="unknown-net"
 AGA_shop_id="unknown-shop"
 
 . "$AGA_cfg_file"
+. "$AGA_mod_file"
 
 AGA_has_eth0()
 {
@@ -25,6 +27,13 @@ AGA_has_network()
 {
   netstat -rn | grep -qs '^0.0.0.0'
 }
+
+AGA_ip=30
+if (test $AGA_mode = "showcase"); 
+  then 
+    AGA_ip=60
+fi
+AGA_ip=$(($AGA_ip+$AGA_ID-1))
 
 while ! AGA_has_eth0; do
   sleep 1
@@ -50,7 +59,7 @@ iface lo inet loopback
 allow-hotplug eth0
 
 iface eth0 inet static
-   address 172.$AGA_net.$AGA_shop_id.30
+   address 172.$AGA_net.$AGA_shop_id.$AGA_ip
    netmask 255.255.255.128
    gateway 172.$AGA_net.$AGA_shop_id.1
 	pre-up iptables-restore < /etc/iptables.conf
@@ -59,7 +68,7 @@ EOF
   echo nameserver 172.$AGA_net.$AGA_shop_id.1 > ${AGA_resolv_file}
   ifup eth0
   sleep 5
-  if (arp-scan -q -arpspa=172.$AGA_net.$AGA_shop_id.30 172.$AGA_net.$AGA_shop_id.1 | grep -qs "172.$AGA_net.$AGA_shop_id.1") then 
+  if (arp-scan -q -arpspa=172.$AGA_net.$AGA_shop_id.$AGA_ip 172.$AGA_net.$AGA_shop_id.1 | grep -qs "172.$AGA_net.$AGA_shop_id.1") then 
     exit
   fi
 fi
@@ -67,7 +76,7 @@ fi
 while (true); do
   for ((AGA_net=20; AGA_net<=29; AGA_net++)) do 
     for ((AGA_shop_id=0; AGA_shop_id<=255; AGA_shop_id++)) do
-      if (arp-scan -q -arpspa=172.$AGA_net.$AGA_shop_id.30 172.$AGA_net.$AGA_shop_id.1 | grep -qs "172.$AGA_net.$AGA_shop_id.1") then
+      if (arp-scan -q -arpspa=172.$AGA_net.$AGA_shop_id.$AGA_ip 172.$AGA_net.$AGA_shop_id.1 | grep -qs "172.$AGA_net.$AGA_shop_id.1") then
         echo AGA_net=\""$AGA_net"\" > ${AGA_cfg_file}
         echo AGA_shop_id=\""$AGA_shop_id"\" >> ${AGA_cfg_file}
         chmod 644 ${AGA_cfg_file}
@@ -80,7 +89,7 @@ iface lo inet loopback
 allow-hotplug eth0
 
 iface eth0 inet static
-   address 172.$AGA_net.$AGA_shop_id.30
+   address 172.$AGA_net.$AGA_shop_id.$AGA_ip
    netmask 255.255.255.128
    gateway 172.$AGA_net.$AGA_shop_id.1
 	pre-up iptables-restore < /etc/iptables.conf

@@ -1,7 +1,9 @@
 #!/bin/bash
 
+. "/home/webc/aga-mod.conf"
+
 AGA_cfg_srv="shops.amag.ru"
-AGA_action_url="http://${AGA_cfg_srv}/kiosk/action"
+AGA_action_url="http://${AGA_cfg_srv}/kiosk/action?config=$AGA_mode"
 AGA_action_file="/etc/webc/aga-action"
 
 sleep 1h

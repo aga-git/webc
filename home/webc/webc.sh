@@ -3,6 +3,7 @@
 . "/etc/webc/functions.sh"
 . "/etc/webc/webc.conf"
 
+
 if test -f /etc/X11/Xresources/x11-common
 then
 	xrdb -merge /etc/X11/Xresources/x11-common
@@ -98,10 +99,13 @@ xset s 600
 xset +dpms
 
 # AGA begin
-#
-sudo chmod 666 "$prefs"
-echo "pref(\"codetch.user_rss_urls\",\"${AGA_rss_url}/?screenW=${AGA_screenW}&screenH=${AGA_screenH}\");" >> "$prefs"
-sudo chmod 644 "$prefs"
+#echo "pref(\"codetch.user_rss_urls\",\"${AGA_rss_url}/?screenW=${AGA_screenW}&screenH=${AGA_screenH}\");" >> "$prefs"
+. "/home/webc/aga-mod.conf"
+if (! cmdline_has feed); then
+	sudo chmod 666 "$prefs"
+	echo "pref(\"codetch.user_rss_urls\",\"${AGA_rss_url}/?screenW=${AGA_screenW}&screenH=${AGA_screenH}&feed=${AGA_mode}\");" >> "$prefs"
+	sudo chmod 644 "$prefs"
+fi
 if test -e $AGA_bb_file; then
   . "$AGA_bb_file"
 fi
@@ -111,6 +115,15 @@ fi
 for x in $(cmdline)
 do
 	case $x in
+
+		# AGA begin
+		#
+		feed=*)
+			sudo chmod 666 "$prefs"
+			echo "pref(\"codetch.user_rss_urls\",\"${AGA_rss_url}/?screenW=${AGA_screenW}&screenH=${AGA_screenH}&feed=${x#feed=}\");" >> "$prefs"
+			sudo chmod 644 "$prefs"
+			;;
+		# AGA end
 
 		kioskresetstation=*) # For killing the browser after a number of minutes of idleness
 			exec /usr/bin/kioskresetstation ${x#kioskresetstation=} &
